@@ -54,6 +54,7 @@ private:
   int  getNumNodes(Node<T>* p); //private function. WHY?
   int  getMinLength(Node<T>* p); //private function. WHY?
   int  getEvenNodes(Node<T>* p); //private function. WHY? 
+  Node<T>* searchR(Node<T>* p, const T& e); //private function. WHY?
 
 
  public:
@@ -68,10 +69,8 @@ private:
   int  getMinLength();
   int  getNumNodes();
   int getEvenNodes();
-  /*
   Node<T>* searchI(const T& e);
   Node<T>* searchR(const T& e);
-  */
 };
 
 //implement the member functions in the header if you are making a template class
@@ -284,40 +283,46 @@ int BST<T>::getEvenNodes(Node<T>* p) //private function. WHY?
   }
 }                                                                                                     
 
-/*
 //Make a search function using iteration. Return the pointer to the node having e
 //return NULL if e is not found.
 //return the pointer to the node with e
 //return NULL if e is not found
 template <class T>
-Node<T>* BST<T>::searchI(??????)
+Node<T>* BST<T>::searchI(const T& e)
 {
-  ???? p = root;
+  Node<T>* p = root;
 
-  while(p ??  ????)
+  while(p !=  NULL)
     {
-    ??????
+      if (p->el == e || p == NULL)
+        return p;
+      else if (p->el > e)
+        p = p->left;
+      else // p->el <= e
+        p = p->right;
     }
 
-  Where do you return NULL?  
-
+  //Where do you return NULL?  
 }
-*/
 
-/*
 //Make a search function using recursion.
 //Return the pointer to the node having e or return NULL if e is not found.
 template <class T>
-?????? BST<T>::searchR(??????)
+Node<T>* BST<T>::searchR(const T& e)
 {
-
+  searchR(root, e);
 }
 
 template <class T>
-????? BST<T>::searchR(????? p, const T& e) //private function. WHY?
+Node<T>* BST<T>::searchR(Node<T>* p, const T& e) //private function. WHY?
 {
-
+  // base case
+  if (p == NULL || p->el == e)
+    return p; // either NULL or location of root
+  else if (e < p->el)
+    return searchR(p->left, e);
+  else
+    return searchR(p->right, e);
 }
-*/
 
 #endif

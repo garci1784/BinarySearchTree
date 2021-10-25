@@ -44,13 +44,11 @@ int main()
   cout << "The total number of nodes is " << b1.getNumNodes() << endl;
   cout << "The total number of even nodes is " << b1.getEvenNodes() << endl;
 
-  /*
   cout << "Searching n using Recursion " << b1.searchR(n)->getEl() <<  endl;
   cout << "Searching n using Iteration " << b1.searchI(n)->getEl() << endl;
   cout << "Searching 1000 using Recursion " << b1.searchR(1000) << endl;
   cout << "Searching 1000 using Iteration " << b1.searchI(1000) << endl;
 
-  */
   cout << "Destructor is being called" << endl;
 
   return 0;
