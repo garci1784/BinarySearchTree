@@ -2,8 +2,8 @@
 Template created by Kazumi Slott
 CS311
 
-Your name: ???????
-Your programmer number: ?????
+Your name: Jorge Ezequiel Garcia Lopez
+Your programmer number: 08
 Any difficulties?: ??????
 *****************/
 
