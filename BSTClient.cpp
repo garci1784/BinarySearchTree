@@ -18,7 +18,7 @@ int main()
   //ofstream fout;
   //fout.open("BST.in");
   ifstream fin;
-  fin.open("/Users/ezzz/CLionProjects/BinarySearchTree/BST.in");
+  fin.open("BST.in");
 
   for(int i = 1; i <= 30; i++)
     {
@@ -39,10 +39,10 @@ int main()
   cout << "\n\nb1.postOrderPrint()" << endl;
   b1.postOrderPrint();
 
-  /*
   cout << endl << endl << "The max length is " << b1.getMaxLength() << endl;
   cout << "The min length is " << b1.getMinLength() << endl;
   cout << "The total number of nodes is " << b1.getNumNodes() << endl;
+  /*
   cout << "The total number of even nodes is " << b1.getEvenNodes() << endl;
 
   cout << "Searching n using Recursion " << b1.searchR(n)->getEl() <<  endl;

@@ -50,6 +50,9 @@ private:
   void inOrderPrint(Node<T>* p);
   void preOrderPrint(Node<T>* p); //private function. WHY?
   void postOrderPrint(Node<T>* p); //private function. WHY?
+  int  getMaxLength(Node<T>* p); //private function. WHY?
+  int  getNumNodes(Node<T>* p); //private function. WHY?
+  int  getMinLength(Node<T>* p); //private function. WHY?
 
 
  public:
@@ -60,10 +63,10 @@ private:
   void inOrderPrint();
   void preOrderPrint();
   void postOrderPrint();
+  int  getMaxLength();
+  int  getMinLength();
+  int  getNumNodes();
   /*
-  int getMaxLength();
-  int getMinLength();
-  int getNumNodes();
   int getEvenNodes();
   Node<T>* searchI(const T& e);
   Node<T>* searchR(const T& e);
@@ -106,24 +109,12 @@ void BST<T>::destroy(Node<T>* p) //private function. WHY?
 //CS211 Lecture Notes on BST – insertNode
 //CS211 Lecture recording - Lecture 4/26(Mon) - DLL::deleteFront, BST::insert(), search()
 
-/**
- * This function inserts an element into the binary search tree
- * recursively.
- * @tparam T template type chosen at run time
- * @param e the node to be inserted into the BST
- */
 template<class T>
 void  BST<T>::insertNodeR(const T& e)
 {
   insertNodeR(root, e);
 }
 
-/**
- * This function inserts a node into the BST recursively.
- * @tparam T type chosen at run-time
- * @param p root node
- * @param e element node to be inserted
- */
 template<class T>
 void BST<T>::insertNodeR(Node<T>* p, const T& e) //private function. WHY?
 {
@@ -137,12 +128,6 @@ void BST<T>::insertNodeR(Node<T>* p, const T& e) //private function. WHY?
 
 //This is an insert function using iteration.
 //You will see insert function using iteration is unwieldy compared to that using recursion above.
-/**
- * This functions inserts a node into the BST
- * using iteration.
- * @tparam T type chosen at run-time
- * @param e node to be inserted
- */
 template <class T>
 void BST<T>::insertNodeI(const T& e)
 {
@@ -155,10 +140,10 @@ void BST<T>::insertNodeI(const T& e)
     {
       //parent points to the parent node while p points to the left or right child.
       parent = p; 
-      if(e < parent->el)
-	      p = parent->left;
+      if(e < p->el)
+	      p = p->left;
       else //p->el <= e
-	      p = parent->right;
+	      p = p->right;
     }
 
   if(parent == NULL) //tree is empty
@@ -173,24 +158,12 @@ void BST<T>::insertNodeI(const T& e)
 //CS211 Lec notes on BST recursive functions - destroy and in order traversal
 //CS211 Lecture recording - Lecture 4/28(Wed) - BST:: inOrderPrint(), destroy()
 
-/**
- * This function prints the elements of the BsT
- * using in-order-traversal starting at the root
- * node.
- * @tparam T Type of BST
- */
 template <class T>
 void BST<T>::inOrderPrint()
 {
   inOrderPrint(root);
 }
 
-/**
- * This function uses in-order traversal of the
- * BST to print the nodes.
- * @tparam T type of the BST
- * @param p root node
- */
 template <class T> //private function. WHY?
 void BST<T>::inOrderPrint(Node<T>* p)
 {
@@ -201,11 +174,6 @@ void BST<T>::inOrderPrint(Node<T>* p)
   inOrderPrint(p->right);
 }
 
-/**
- * This function uses pre-order traversal of the
- * BST to print the nodes starting at the root.
- * @tparam T  type of the BST
- */
 template <class T>
 void BST<T>::preOrderPrint()
 {
@@ -213,13 +181,6 @@ void BST<T>::preOrderPrint()
   preOrderPrint(root);
 }
 
-
-/**
- * This function uses pre-order traversal of the
- * BST to print the nodes starting at the root.
- * @tparam T  type of the BST
- * @param p root node
- */
 template <class T>
 void BST<T>::preOrderPrint(Node<T>* p) //private function. WHY?
 {
@@ -230,10 +191,6 @@ void BST<T>::preOrderPrint(Node<T>* p) //private function. WHY?
   preOrderPrint(p->right);
 }
 
-/**
- * This function uses post-order traversal of the
- * BST to print the nodes starting at the root.
- */
 template <class T>
 void BST<T>::postOrderPrint()
 {
@@ -241,12 +198,6 @@ void BST<T>::postOrderPrint()
   postOrderPrint(root);
 }
 
-/**
- * This function uses post-order traversal of the
- * BST to print the nodes starting at the root.
- * @tparam T  type of the BST
- * @param p root node
- */
 template <class T>
 void BST<T>::postOrderPrint(Node<T>* p) //private function. WHY?
 {
@@ -257,7 +208,6 @@ void BST<T>::postOrderPrint(Node<T>* p) //private function. WHY?
   cout << p->el << "-->";
 }
 
-/*
 //If you don't know how to make this, check the following
 //Lec Notes on BST :: Recursive Functions – getNumNodes
 //CS211 Lecture recording - Lecture 4/30(Fri) - BST::getNumNodes, phase 3 of college
@@ -265,44 +215,52 @@ void BST<T>::postOrderPrint(Node<T>* p) //private function. WHY?
 template <class T>
 int BST<T>::getNumNodes()
 {
-  
+  return getNumNodes(root);
 }
 
 template <class T>
-int BST<T>::getNumNodes(??????) //private function WHY?
+int BST<T>::getNumNodes(Node<T>* p) //private function WHY?
 {
-
+  if (p == NULL)
+    return 0;
+  else 
+    return getNumNodes(p->left) + getNumNodes(p->right) + 1;
 }
-*/
 
-/*
 //This function return the maximum length from the root. If there is only one node, this function returns 1.
 template <class T>
 int BST<T>::getMaxLength()
 {
-
+  return getMaxLength(root);
 }
 
 template <class T>
-int BST<T>::getMaxLength(???????) //private function. Why?
+int BST<T>::getMaxLength(Node<T>* p) //private function. Why?
 {
-
+  if (p == NULL)
+    return 0;
+  else
+  {
+    return max(getMaxLength(p->left), getMaxLength(p->right)) + 1;
+  }
 }
-*/
 
-/*
 template <class T>
 int BST<T>::getMinLength()
 {
-  
+  getMinLength(root);
 }
 
 template <class T>
-int BST<T>::getMinLength(?????) //private function. WHY?
+int BST<T>::getMinLength(Node<T>* p) //private function. WHY?
 {
-  
+  if (p == NULL)
+    return 0;
+  else
+  {
+    return min(getMinLength(p->left), getMinLength(p->right)) + 1;
+  }
 }
-*/
 
 /*                                                                                                    
 //This function will return the number of even elements
