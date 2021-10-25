@@ -53,6 +53,7 @@ private:
   int  getMaxLength(Node<T>* p); //private function. WHY?
   int  getNumNodes(Node<T>* p); //private function. WHY?
   int  getMinLength(Node<T>* p); //private function. WHY?
+  int  getEvenNodes(Node<T>* p); //private function. WHY? 
 
 
  public:
@@ -66,8 +67,8 @@ private:
   int  getMaxLength();
   int  getMinLength();
   int  getNumNodes();
-  /*
   int getEvenNodes();
+  /*
   Node<T>* searchI(const T& e);
   Node<T>* searchR(const T& e);
   */
@@ -262,21 +263,26 @@ int BST<T>::getMinLength(Node<T>* p) //private function. WHY?
   }
 }
 
-/*                                                                                                    
 //This function will return the number of even elements
 template <class T>                                                                                    
 int BST<T>::getEvenNodes()                                                                            
 {                                                                                                     
-                                                                                                      
+  return getEvenNodes(root);
 }                                                                                                     
                                                                                                       
 template <class T>                                                                                    
-int BST<T>::getEvenNodes(?????) //private function. WHY?                                              
-{                                                                                                     
-                                                                                                      
+int BST<T>::getEvenNodes(Node<T>* p) //private function. WHY? 
+{
+  int count = 0;
+  if (p == NULL)
+    return 0;
+  else
+  {
+    if ((p->el) % 2 == 0)
+      count++;
+    return count + getEvenNodes(p->left) + getEvenNodes(p->right);
+  }
 }                                                                                                     
-*/
-
 
 /*
 //Make a search function using iteration. Return the pointer to the node having e
